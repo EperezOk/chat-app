@@ -77,18 +77,21 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);
 
-    socket.broadcast
-      .to(user.room)
-      .emit(
-        "message",
-        formatMessage(botName, `${user.username} salió del chat`)
-      );
+    // Lo checkeamos porque a veces se bugea y nos puede crashear el programa, pero sino deberia funcionar sin esto
+    if (user) {
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          "message",
+          formatMessage(botName, `${user.username} salió del chat`)
+        );
 
-    // Refresh everyone's sidebar
-    socket.broadcast.to(user.room).emit("roomUsers", {
-      room: user.room,
-      users: getRoomUsers(user.room),
-    });
+      // Refresh everyone's sidebar
+      socket.broadcast.to(user.room).emit("roomUsers", {
+        room: user.room,
+        users: getRoomUsers(user.room),
+      });
+    }
   });
 });
 

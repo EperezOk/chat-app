@@ -19,8 +19,11 @@ function userLeave(id) {
   // Vemos en que index del array esta el user
   const index = users.findIndex((user) => user.id === id);
 
-  // Lo removemos del array y lo retornamos (notar que splice retorna un array, por eso el 0)
-  return users.splice(index, 1)[0];
+  // Checkeamos por las dudas que exista el user porque a veces se bugean las desconexiones
+  if (index != -1) {
+    // Lo removemos del array y lo retornamos (notar que splice retorna un array, por eso el 0)
+    return users.splice(index, 1)[0];
+  }
 }
 
 // Get room users

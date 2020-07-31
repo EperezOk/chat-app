@@ -224,3 +224,31 @@ a {
     display: none;
   }
 }
+
+@media (max-width: 412px) {
+  .chat-form-container {
+    padding: 15px 15px;
+  }
+
+  #msg {
+    width: 70%;
+  }
+
+  .btn i {
+    display: none;
+  }
+
+  h1 {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 310px) {
+  .fa-smile {
+    display: none;
+  }
+
+  #msg {
+    font-size: 0.85em;
+  }
+}
